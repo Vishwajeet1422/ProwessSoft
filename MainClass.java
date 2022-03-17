@@ -1,8 +1,8 @@
 package com.company;
 
-public class ThreadClass extends Thread {
-    public void start()
-    {
+public class ThreadClass implements Runnable {
+    @Override
+    public void run() {
         for(int i=0;i<5;i++)
             System.out.println("i - "+i);
     }
@@ -11,9 +11,10 @@ public class ThreadClass extends Thread {
 class MainClass {
     public static void main(String args[]) {
         ThreadClass tc = new ThreadClass();
+        Thread t=new Thread(tc);
         try {
-            System.out.println(tc.getName());
-            tc.start();
+            t.start();
+            System.out.println(t.getName());
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
